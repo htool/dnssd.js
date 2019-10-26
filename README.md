@@ -1,9 +1,13 @@
-# dnssd.js
+# dnssd2
 #### Bonjour/Avahi-like service discovery in pure JavaScript
+#### Fork of [abandoned](https://github.com/DeMille/dnssd.js/issues/15) [dnssd](https://github.com/DeMille/dnssd.js)
 
-[![Build Status](https://travis-ci.org/DeMille/dnssd.js.svg?branch=master)](https://travis-ci.org/DeMille/dnssd.js) [![Coverage Status](https://coveralls.io/repos/github/DeMille/dnssd.js/badge.svg?branch=master)](https://coveralls.io/github/DeMille/dnssd.js?branch=master)
 
-`dnssd` lets you find (and advertise) services on your network like chromecasts, printers, and airplay speakers.
+>I wish the original author could continue, I don't have the expertise, just needed to fix a bug that caused me trouble and wanted the fix in npm.
+
+>--tkurki
+
+`dnssd2` lets you find (and advertise) services on your network like chromecasts, printers, and airplay speakers.
 
 **Features**
 - [x] Compliant with standards ([RFC 6762][6762] & [RFC 6763][6763]) ✔
@@ -12,7 +16,7 @@
 - [x] Dependency-less
 
 ```
-npm install dnssd
+npm install dnssd2
 ```
 
 [6762]: https://tools.ietf.org/html/rfc6762
@@ -24,7 +28,7 @@ npm install dnssd
 
 ## Usage
 ```js
-const dnssd = require('dnssd');
+const dnssd = require('dnssd2');
 
 // advertise a http server on port 4321
 const ad = new dnssd.Advertisement(dnssd.tcp('http'), 4321);
@@ -41,7 +45,7 @@ const browser = dnssd.Browser(dnssd.tcp('googlecast'))
 
 
 ## Documentation
-`dnssd` aims to have a API compatible with the [mdns package](https://github.com/agnat/node_mdns) + some extras.
+The original `dnssd` aims to have a API compatible with the [mdns package](https://github.com/agnat/node_mdns) + some extras.
 
 - Class: [Advertisement](#user-content-new-advertisement)
   + [new dnssd.Advertisement(serviceType, port [, options])](#user-content-new-advertisement)
@@ -72,7 +76,7 @@ const browser = dnssd.Browser(dnssd.tcp('googlecast'))
 
 ```js
 // advertising a http server on port 4321:
-const ad = new dnssd.Advertisement(dnssd.tcp('http'), 4321);
+const ad = new dnssd.Advertisement(dnssd2.tcp('http'), 4321);
 ad.start();
 ```
 
@@ -103,7 +107,7 @@ Updates the advertisements TXT record
 
 ```js
 // find all chromecasts
-const browser = dnssd.Browser(dnssd.tcp('googlecast'))
+const browser = dnssd2.Browser(dnssd.tcp('googlecast'))
   .on('serviceUp', service => console.log("Device up: ", service))
   .on('serviceDown', service => console.log("Device down: ", service))
   .start();
